@@ -5,15 +5,15 @@
 # This script reads in trace files from mc-fold 2.32 and generates dot plots
 # ---------------------------------------------------------------------------
 
-dir_name = '/Users/chstei/Postdoc/E. coli ribosome/h23'
-file_name = 'h23-top_pruned.out.txt'
+dir_name = '/Users/chstei/Postdoc/E. coli ribosome/h23-ELN'
+file_name = 'h23-full_pruned.out.txt'
 
-nt_seq = 'GGUGUAGCGGUGAAAUGCGUAGAGACC'
-retain_folds = 1000
-from_nt1 = 3
-to_nt1 = 13
-from_nt2 = 14
-to_nt2 = 25
+nt_seq = 'AGAAUUCCAGGUGUAGCGGUGAAAUGCGUAGAGAUCUGGAGGAAU'
+retain_folds = 10000
+from_nt1 = 1
+to_nt1 = 22
+from_nt2 = 23
+to_nt2 = 45
 
 plot_limits = ['dot', 'bulge'] # TODO implement switching graphical limits on/off separately
 
@@ -53,10 +53,10 @@ def layer_setup(x_scale=1.0, y_scale=1.0):
     return figure, layer
 
 
-def make_figure():
+def make_figure(output_tag=''):
     if save_figure:
         for ext in ext_figure:
-            plt.savefig(dir_name + '/' + file_name + '_dot.' + ext, bbox_inches='tight')
+            plt.savefig(f'{dir_name}/{file_name}_{output_tag}.{ext}', bbox_inches='tight')
     if show_figure:
         plt.show()
 
@@ -149,7 +149,7 @@ figure1.colorbar(cm.ScalarMappable(norm=Normalize(vmin=0.001, vmax=1)), label='P
 # ---------------
 # Generate figure
 # ---------------
-make_figure()
+make_figure(output_tag='dot')
     
 # ---------------------------------
 # Set up layers for bulge histogram
@@ -179,7 +179,7 @@ layer2.set_xlim(from_nt1-1, to_nt1)
 # ---------------
 # Generate figure
 # ---------------
-make_figure()
+make_figure(output_tag='bulge')
 
 # -------------------------------------
 # Set up layers for 2nd bulge histogram
@@ -209,7 +209,7 @@ layer3.set_xlim(from_nt2-1, to_nt2)
 # ---------------
 # Generate figure
 # ---------------
-make_figure()
+make_figure(output_tag='bulge2')
 
 # --------------------------------
 # Set up layers for energy diagram
@@ -229,4 +229,4 @@ layer4.set_ylabel(r'$\Delta$$G$ (kcal mol$^{-1}$)')     # matplotlib works best 
 # ---------------
 # Generate figure
 # ---------------
-make_figure()
+make_figure(output_tag='energy')
