@@ -15,7 +15,8 @@ file_names = ['test_complete.out.txt']
 # Default: None, specify a base pair between nucleotides i and j as [(i, j)] or a bulge at nucleotide k as [(k, 0)].
 # Multiple criteria can be given as, e.g., [(i, j), (k, 0)]
 filter_bp = [(14, 30), (21, 24)]
-# Default: 'include' to keep only structures that contain all of the requested base pair patterns. Set to 'exclude'
+# Default: 'include' to keep only structures that contain all of the requested base pair patterns. Set to 'exclude' to
+# keep only structures that contain none of the requested base pair patterns
 filter_mode = 'include'
 
 init = parse = make_table = bp_filter = single_bp = breathing = discard = write = 0
